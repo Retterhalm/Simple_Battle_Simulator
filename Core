@@ -1,0 +1,167 @@
+'''Simple Battle scenario using classes. Not complete yet'''
+import random
+
+class Human:#Superclass
+    def __init__(self,height, weight, head,eyes,l_arm,r_arm,l_leg, r_leg, back,chest, stomach):# Definition of body parts for future damage model
+        self.height = height
+        self.weight = weight
+        self.head = head
+        self.eyes = eyes
+        self.l_arm = l_arm
+        self.r_arm = r_arm
+        self.l_leg = l_leg
+        serf.r_leg = r_leg
+        self.back = back
+        self.chest = chest
+        self.stomach = stomach
+class Elf:#Superclass
+    def __init__(self,height, weight, head,eyes,l_arm,r_arm,l_leg, r_leg, back,chest, stomach):# Definition of body parts for future damage model
+        self.height = height
+        self.weight = weight
+        self.head = head
+        self.eyes = eyes
+        self.l_arm = l_arm
+        self.r_arm = r_arm
+        self.l_leg = l_leg
+        serf.r_leg = r_leg
+        self.back = back
+        self.chest = chest
+        self.stomach = stomach        
+
+class Warrior(Human): # Warior- Human class
+    def __init__(self, name, rank, health, weapon, state):
+        self.name = name
+        self.rank = rank
+        self.health = health
+        self.weapon = weapon
+        self.state = state
+        
+    def hit(self,weapon):# thus we hit
+        strike = random.randint(0,90) + weapon.weap_class
+        list_pref = [' bravely ', ' suddenly ', ' sneaky ', ' lightning fast ', ' shatteringly ', ' with a gloomy smirk ', ' easily ' , ' fearlessly ', ' intrepidly ']
+        action_pref = random.choice(list_pref)
+        
+        list_act = [' deals ', ' rushes for ', ' hits ', ' smites for ', ' crashes for ', ' slashes for ', ' rams ', ' inflicts ' , ' strikes a blow for ', ' bangs ']
+        action_message = random.choice(list_act)
+       
+        print(str(self.name) + str (action_pref) + str(action_message) + str(strike) + ' damage !')
+        return strike
+    def damg(self, warrior1,warrior2):# thus we  damage
+        warrior2.health = warrior2.health - warrior1.hit(warrior2.weapon)
+        if warrior2.health > 0:
+            print(str(warrior2.name)+ ' has '+ str(warrior2.health) + ' HP left !')
+        if warrior2.health <=0:
+            print(str(warrior2.name)+ ' has ' + ' no HP left !')
+            list_end_pref = [' collapsed ', ' fell down ', ' tumbled ', ]
+            list_end = ['  with heavy wounds ', '  in agony ', ' with a surprised expression on his face ', ' yelling out curses ']
+            end_msg_pref = random.choice(list_end_pref)
+            end_msg = random.choice(list_end)
+            print( str(warrior2.name) + ' has ' + str(end_msg_pref) + str(end_msg))
+            
+            
+        
+class Fighter(Elf): # Warior - Elf class
+    def __init__(self, name, rank, health, weapon, state):
+        self.name = name
+        self.rank = rank
+        self.health = health
+        self.weapon = weapon
+        self.state = state
+        
+    def hit(self,weapon):# thus we hit
+        strike = random.randint(0,90) + weapon.weap_class
+        list_pref = [' bravely ', ' suddenly ', ' sneaky ', ' lightning fast ', ' shatteringly ', ' with a gloomy smirk ', ' easily ' , ' fearlessly ', ' intrepidly ']
+        action_pref = random.choice(list_pref)
+        
+        list_act = [' deals ', ' rushes for ', ' hits ', ' smites for ', ' crashes for ', ' slashes for ', ' rams ', ' inflicts ' , ' strikes a blow for ', ' bangs ']
+        action_message = random.choice(list_act)
+       
+        print(str(self.name) + str (action_pref) + str(action_message) + str(strike) + ' damage !')
+        return strike
+    def damg(self, warrior1,warrior2):# thus we  damage
+        warrior2.health = warrior2.health - warrior1.hit(warrior2.weapon)
+        print(str(warrior2.name)+ ' has '+ str(warrior2.health) + ' HP left !')
+        if warrior2.health <=0:
+            print( str(warrior2.name) + ' dies!')
+            return 
+            
+               
+class Weapon():#Weapon class
+    def __init__(self, typ, weap_class, material, cond):
+        self.typ = typ# weapon type
+        self.weap_class = weap_class # weapon class
+        self.material = material # weapon material
+        self.cond = cond # weapon condition
+axe = Weapon('axe',10, 'steel',100)
+sword = Weapon('sword',6, 'steel',100)
+#Class Material() # For different materials to weapon damage model
+#   pass     
+''' Two Warriors below'''    
+#hero = input()
+#hero = Warrior( hero, 'Knight', 100, axe, 'Full Health')
+marcus = Warrior('Marcus', 'Lord', 100, axe, ' Full Health')
+gabriel = Warrior('Gabriel','Knight', 95, sword, 'Full Health')
+#marcus.height = 154
+#print (marcus.hit(axe))
+#print (marcus.hit(axe))
+#print (gabriel.hit(gabriel.weapon))
+'''def attack_block():
+    attack_chance = random.randint(0,10)
+    block_chance = random.randint(0, 10)
+    if attack_chance > 5:
+        attack = True
+        if attack_chance >= block_chance:
+            block = False
+            print('Hit!')
+        else:
+            print('Blocked!')
+    else:
+        attack = False
+        print('Fail!')'''
+
+def tour(warrior1, warrior2):
+    print (str(warrior1.name) + ' attacks!')
+    attack_chance = random.randint(0, 100)
+    block_chance = random.randint(0, 100)
+    #print( 'attack' + str(attack_chance))
+    #print( 'block' + str(block_chance))
+    
+    if attack_chance > 30:
+            
+        if attack_chance > block_chance:
+            warrior1.damg(warrior1,warrior2)
+            #print('Hit!')
+        else:
+            list_block_msg_pref = [ ' easily ', ' readily ' , ' fast ', ' rapidly ', ' fast ' , ' quick' , ' hardly ', ' scarcely ', ' heavily ' ]
+            block_msg_pref = random.choice(list_block_msg_pref)
+            list_block_msg = [' blocked ', ' parried ', ' avoided  ', ' evaded ', ' dodged ', ' warded off' , ' reflected ' , ' repeled ', ' reverberated ' ]
+            block_msg = random.choice(list_block_msg)
+            list_block_msg_end = [ ' the attack ', ' the strike ', ' the hit ' , ' the blow ', ' the bump ', ' the strike ', ' the slash ']
+            block_msg_end = random.choice(list_block_msg_end)
+            print(str(warrior2.name) + ' has ' + block_msg_pref + block_msg + block_msg_end + ' ! ')
+    else:
+        list_attck_msg_fail_pref = [ ' missed ', ' muffed ' , ' bluffed ', ' blundered ', ' failed ', ' spoiled ' ]
+        attck_msg_fail_pref = random.choice(list_attck_msg_fail_pref)
+        list_attck_msg_fail = [' the attack ' , ' the blow ', ' the hit ' , ' the thrust ' , ' the rush ', ' the assault ', ' the charge ' ,' the onslaught ']
+        attck_msg_fail = random.choice(list_attck_msg_fail)
+        print (str(warrior1.name) + attck_msg_fail_pref + attck_msg_fail + ' ! ')
+        
+    if warrior2.health > 0 :   
+        tour(warrior2,warrior1)
+            
+    else:
+        battle_end()
+        return
+
+def fight(warrior1,warrior2):
+    print ('Welcome to The Arena!!!')
+    print ('We proudly represent our two best fighters:')
+    print (str(warrior1.name) + ', ' + str(warrior1.rank) + ' !')
+    print ('And')
+    print (str(warrior2.name) + ', ' + str(warrior2.rank) + ' !') 
+    print ('Let\'s the FIGHT begins!!!')
+    tour(warrior1,warrior2)
+def battle_end():
+    print('The Fight is over!!!')
+    
+fight (marcus,gabriel)
