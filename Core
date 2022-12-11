@@ -10,7 +10,7 @@ class Human:#Superclass
         self.l_arm = l_arm
         self.r_arm = r_arm
         self.l_leg = l_leg
-        serf.r_leg = r_leg
+        self.r_leg = r_leg
         self.back = back
         self.chest = chest
         self.stomach = stomach
@@ -23,7 +23,7 @@ class Elf:#Superclass
         self.l_arm = l_arm
         self.r_arm = r_arm
         self.l_leg = l_leg
-        serf.r_leg = r_leg
+        self.r_leg = r_leg
         self.back = back
         self.chest = chest
         self.stomach = stomach        
